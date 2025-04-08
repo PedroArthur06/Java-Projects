@@ -1,2 +1,3 @@
 # Java Projetcs
- Repositório para armazenar códigos de java feitos em sala de aula
+
+Repositório para armazenar códigos em Java feitos em sala de aula.
