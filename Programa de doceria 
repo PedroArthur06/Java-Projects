@@ -1,0 +1,92 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class outravendadedoces extends JFrame {
+
+    JTextField tfBrigadeiro, tfCookie, tfPudim;
+
+    public outravendadedoces() {
+        setTitle("Venda de doces");
+        setSize(400, 500);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+
+        // Painel principal
+        JPanel painel = new JPanel();
+        painel.setLayout(new BoxLayout(painel, BoxLayout.Y_AXIS));
+        painel.setBackground(Color.LIGHT_GRAY);
+
+        JLabel titulo = new JLabel("Loja de doces");
+        titulo.setFont(new Font("Arial", Font.BOLD, 26));
+        titulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        painel.add(Box.createRigidArea(new Dimension(0, 20)));
+        painel.add(titulo);
+        painel.add(Box.createRigidArea(new Dimension(0, 20)));
+
+        // Brigadeiro
+        painel.add(criarItem("R$ 10,00", "cookie.jpg", tfBrigadeiro));
+
+        // Cookie
+        painel.add(criarItem("R$ 10,00", "cookie.jpg", tfCookie));
+
+        // Pudim
+        painel.add(criarItem("R$ 10,00", "cookie.jpg", tfPudim));
+
+        // Botão
+        JButton btnPedir = new JButton("Pedir");
+        btnPedir.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnPedir.setBackground(new Color(100, 100, 255));
+        btnPedir.setForeground(Color.WHITE);
+        btnPedir.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                calcularTotal();
+            }
+        });
+
+        painel.add(Box.createRigidArea(new Dimension(0, 20)));
+        painel.add(btnPedir);
+        painel.add(Box.createRigidArea(new Dimension(0, 20)));
+
+        add(painel, BorderLayout.CENTER);
+        setVisible(true);
+    }
+
+    private JPanel criarItem(String preco, String imagemNome, JTextField campoQuantidade) {
+        JPanel item = new JPanel();
+        item.setLayout(new FlowLayout(FlowLayout.LEFT));
+        item.setBackground(Color.LIGHT_GRAY);
+
+        // Imagem
+        ImageIcon imagemIcone = new ImageIcon(imagemNome);
+        JLabel img = new JLabel();
+        img.setIcon(imagemIcone);
+        item.add(img);
+
+        // Preço
+        item.add(new JLabel(preco));
+
+        // Campo de texto
+        item.add(campoQuantidade);
+
+        return item;
+    }
+
+    private void calcularTotal() {
+        try {
+            int qtdBrigadeiro = Integer.parseInt(tfBrigadeiro.getText());
+            int qtdCookie = Integer.parseInt(tfCookie.getText());
+            int qtdPudim = Integer.parseInt(tfPudim.getText());
+
+            double total = qtdBrigadeiro * 10 + qtdCookie * 15 + qtdPudim * 25;
+
+            JOptionPane.showMessageDialog(this, "O total da compra: " + total, "Sistema de doces", JOptionPane.INFORMATION_MESSAGE);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Digite apenas números!", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public static void main(String[] args) {
+        new outravendadedoces();
+    }
+}
