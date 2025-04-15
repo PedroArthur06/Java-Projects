@@ -1,4 +1,5 @@
 package JButton;
+
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -20,7 +21,7 @@ public class ButtonFrame extends JFrame {
         setLayout(new FlowLayout()); // configura o layout do frame
 
         plainJButton = new JButton("Plain Button"); // botão com texto
-        add(plainJButton); //adiciona o plainJButton ao JFrame
+        add(plainJButton); // adiciona o plainJButton ao JFrame
 
         Icon bug1 = new ImageIcon(getClass().getResource("bug1.gif"));
         Icon bug2 = new ImageIcon(getClass().getResource("bug2.gif"));
@@ -36,11 +37,10 @@ public class ButtonFrame extends JFrame {
 
     // classe interna para tratamento de evento de botão
     private class ButtonHandler implements ActionListener {
-        
+
         // trata evento de botão
         public void actionPerformed(ActionEvent event) {
             JOptionPane.showMessageDialog(ButtonFrame.this, String.format("You pressed: %s", event.getActionCommand()));
         }
     } // fim da classe interna ButtonHandler
 }
-
