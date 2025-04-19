@@ -1,3 +1,5 @@
+package OrientaçãoAObjeto;
+
 public class Usuario {
   private String nome;
   private String email;
@@ -8,9 +10,10 @@ public class Usuario {
   private String cpf;
   private String nacionalidade;
   private String estadoCivil;
+  private String profissao;
 
   public Usuario(String nome, String email, String senha, String telefone, String endereco, String dataNascimento,
-      String cpf, String nacionalidade, String estadoCivil) {
+      String cpf, String nacionalidade, String estadoCivil, String profissao) {
 
     this.nome = nome;
     this.email = email;
@@ -21,6 +24,7 @@ public class Usuario {
     this.cpf = cpf;
     this.nacionalidade = nacionalidade;
     this.estadoCivil = estadoCivil;
+    this.profissao = profissao;
   }
 
   public Usuario() {
@@ -150,6 +154,20 @@ public class Usuario {
    */
   public void setEstadoCivil(String estadoCivil) {
     this.estadoCivil = estadoCivil;
+  }
+
+  /**
+   * @return String return the profissao
+   */
+  public String getProfissao() {
+    return profissao;
+  }
+
+  /**
+   * @param profissao the profissao to set
+   */
+  public void setProfissao(String profissao) {
+    this.profissao = profissao;
   }
 
 }
