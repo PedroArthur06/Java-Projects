@@ -9,11 +9,10 @@ public class Usuario {
   private String dataNascimento;
   private String cpf;
   private String nacionalidade;
-  private String estadoCivil;
-  private String profissao;
 
+  // Construtor
   public Usuario(String nome, String email, String senha, String telefone, String endereco, String dataNascimento,
-      String cpf, String nacionalidade, String estadoCivil, String profissao) {
+      String cpf, String nacionalidade) {
 
     this.nome = nome;
     this.email = email;
@@ -23,8 +22,6 @@ public class Usuario {
     this.dataNascimento = dataNascimento;
     this.cpf = cpf;
     this.nacionalidade = nacionalidade;
-    this.estadoCivil = estadoCivil;
-    this.profissao = profissao;
   }
 
   public Usuario() {
@@ -140,34 +137,6 @@ public class Usuario {
    */
   public void setNacionalidade(String nacionalidade) {
     this.nacionalidade = nacionalidade;
-  }
-
-  /**
-   * @return String return the estadoCivil
-   */
-  public String getEstadoCivil() {
-    return estadoCivil;
-  }
-
-  /**
-   * @param estadoCivil the estadoCivil to set
-   */
-  public void setEstadoCivil(String estadoCivil) {
-    this.estadoCivil = estadoCivil;
-  }
-
-  /**
-   * @return String return the profissao
-   */
-  public String getProfissao() {
-    return profissao;
-  }
-
-  /**
-   * @param profissao the profissao to set
-   */
-  public void setProfissao(String profissao) {
-    this.profissao = profissao;
   }
 
 }

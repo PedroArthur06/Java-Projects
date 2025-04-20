@@ -10,7 +10,7 @@ public class UsuarioPremium extends Usuario {
       String dataDeCadastro, String dataDeVencimento, String tipoDePlano) {
 
     // Chama o construtor da classe pai (Usuario)
-    super(nome, email, senha, telefone, endereco, dataNascimento, cpf, nacionalidade, estadoCivil, profissao);
+    super(nome, email, senha, telefone, endereco, dataNascimento, cpf, nacionalidade);
 
     this.dataDeCadastro = dataDeCadastro;
     this.dataDeVencimento = dataDeVencimento;

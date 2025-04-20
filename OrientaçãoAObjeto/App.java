@@ -15,8 +15,6 @@ public class App {
         usuario1.setDataNascimento("08/12/2006");
         usuario1.setCpf("093.349.561-78");
         usuario1.setNacionalidade("Brasileiro");
-        usuario1.setEstadoCivil("Casado");
-        usuario1.setProfissao("Desenvolvedor");
 
         // Exibindo os valores dos atributos do objeto
         System.out.println("Nome: " + usuario1.getNome());
@@ -27,8 +25,6 @@ public class App {
         System.out.println("Data de Nascimento: " + usuario1.getDataNascimento());
         System.out.println("CPF: " + usuario1.getCpf());
         System.out.println("Nacionalidade: " + usuario1.getNacionalidade());
-        System.out.println("Estado Civil: " + usuario1.getEstadoCivil());
-        System.out.println("Profissão: " + usuario1.getProfissao());
 
     }
 }
