@@ -76,15 +76,11 @@ public class InterfaceUsuario extends JFrame {
         JCheckBox checkboxPlanoVip = new JCheckBox("Selecionar Plano VIP");
         painelPlanoVip.add(checkboxPlanoVip);
 
-        // Adiciona os subpainéis ao painel principal
         painelPrincipal.add(painelPlanoNormal);
         painelPrincipal.add(painelPlanoPremium);
         painelPrincipal.add(painelPlanoVip);
-
-        // Adiciona o painel principal à janela
         add(painelPrincipal);
 
-        // Exemplo de como capturar a seleção dos checkboxes
         checkboxPlanoNormal.addActionListener(e -> {
             if (checkboxPlanoNormal.isSelected()) {
                 System.out.println("Plano Normal selecionado!");
