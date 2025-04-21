@@ -1,6 +1,8 @@
 package OrientaçãoAObjeto;
 
 import java.awt.GridLayout;
+
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -8,27 +10,27 @@ import javax.swing.JPanel;
 public class InterfaceUsuario extends JFrame {
 
     public InterfaceUsuario() {
-        // Configurações da janela
         super("Planos de assinatura");
-        setLayout(new GridLayout(1, 1)); // Configura o layout da janela
+        setLayout(new GridLayout(1, 1));
     }
 
     public void showPlanos() {
-        // Painel principal para organizar os planos lado a lado
+
         JPanel painelPrincipal = new JPanel();
-        painelPrincipal.setLayout(new GridLayout(1, 3)); // 1 linha, 3 colunas (um para cada plano)
+        painelPrincipal.setLayout(new GridLayout(1, 3)); // 1 linha, 3 colunas
 
         // Planos de assinatura
         PlanoNormal planoNormal = new PlanoNormal(29.90, "HD", "Smart TV, Celular, Computador", true);
+
         PlanoPremium planoPremium = new PlanoPremium(44.90, "Full HD", "Smart TV, Celular, Computador", false, true, 2,
                 true);
+
         PlanoVip planoVip = new PlanoVip(59.90, "4K Ultra HD", "Smart TV, Celular, Computador", false, true, true, true,
                 true);
 
-        // Subpainel para o Plano Normal
         JPanel painelPlanoNormal = new JPanel();
-        painelPlanoNormal.setLayout(new GridLayout(0, 1)); // Layout vertical
-        painelPlanoNormal.add(new JLabel("Plano Normal:"));
+        painelPlanoNormal.setBorder(BorderFactory.createTitledBorder("Plano Normal"));
+        painelPlanoNormal.setLayout(new GridLayout(0, 1));
         painelPlanoNormal.add(new JLabel("Mensalidade: R$ " + planoNormal.getMensalidade()));
         painelPlanoNormal.add(new JLabel("Qualidade de Streaming: " + planoNormal.getQualidadeStreaming()));
         painelPlanoNormal.add(new JLabel("Aparelhos Compatíveis: " + planoNormal.getAparelhosCompatíveis()));
@@ -36,8 +38,9 @@ public class InterfaceUsuario extends JFrame {
 
         // Subpainel para o Plano Premium
         JPanel painelPlanoPremium = new JPanel();
+        painelPlanoPremium.setBorder(BorderFactory.createTitledBorder("Plano Premium"));
         painelPlanoPremium.setLayout(new GridLayout(0, 1)); // Layout vertical
-        painelPlanoPremium.add(new JLabel("Plano Premium:"));
+        painelPlanoPremium.add(new JLabel());
         painelPlanoPremium.add(new JLabel("Mensalidade: R$ " + planoPremium.getMensalidade()));
         painelPlanoPremium.add(new JLabel("Qualidade de Streaming: " + planoPremium.getQualidadeStreaming()));
         painelPlanoPremium.add(new JLabel("Aparelhos Compatíveis: " + planoPremium.getAparelhosCompatíveis()));
@@ -50,8 +53,9 @@ public class InterfaceUsuario extends JFrame {
 
         // Subpainel para o Plano VIP
         JPanel painelPlanoVip = new JPanel();
+        painelPlanoVip.setBorder(BorderFactory.createTitledBorder("Plano VIP"));
         painelPlanoVip.setLayout(new GridLayout(0, 1)); // Layout vertical
-        painelPlanoVip.add(new JLabel("Plano VIP:"));
+        painelPlanoVip.add(new JLabel());
         painelPlanoVip.add(new JLabel("Mensalidade: R$ " + planoVip.getMensalidade()));
         painelPlanoVip.add(new JLabel("Qualidade de Streaming: " + planoVip.getQualidadeStreaming()));
         painelPlanoVip.add(new JLabel("Aparelhos Compatíveis: " + planoVip.getAparelhosCompatíveis()));

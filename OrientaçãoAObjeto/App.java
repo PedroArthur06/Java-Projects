@@ -9,7 +9,7 @@ public class App {
 
         tela.showPlanos();
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        tela.setSize(800, 500); // configura o tamanho do fram
+        tela.setSize(1000, 600); // configura o tamanho do fram
         tela.setVisible(true); // exibe o frame
 
     }
