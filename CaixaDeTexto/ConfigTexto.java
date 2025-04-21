@@ -1,115 +1,129 @@
 package CaixaDeTexto;
 
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
-import javax.swing.JFrame;
-import javax.swing.JTextArea;
-import javax.swing.JCheckBox;
-import javax.swing.JScrollPane;
+import java.awt.*;
+import java.awt.event.*;
 import java.awt.font.TextAttribute;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.*;
 
 public class ConfigTexto extends JFrame {
-  private JTextArea caixaTexto; // Substituímos JTextField por JTextArea
+  private JTextArea caixaTexto;
   private JCheckBox negrito;
   private JCheckBox italico;
+  private JCheckBox sublinhado;
   private JCheckBox aliEsquerda;
   private JCheckBox aliDireita;
   private JCheckBox aliCentro;
-  private JCheckBox sublinhado;
-  private JCheckBox corTexto;
+  private JComboBox<String> corTexto;
 
   public ConfigTexto() {
-    super("Caixa de texto");
-    setLayout(new FlowLayout());
+    super("Configuração de Texto");
+    setLayout(new BorderLayout());
 
-    caixaTexto = new JTextArea("Escolha a configuração do seu texto", 5, 20); // 5 linha e 20 colunas
+    // Caixa de texto com rolagem
+    caixaTexto = new JTextArea("Digite seu texto aqui.", 5, 30);
     caixaTexto.setFont(new Font("Calibri", Font.PLAIN, 14));
-    caixaTexto.setLineWrap(true); // Quebra de linha automática
+    caixaTexto.setLineWrap(true);
     caixaTexto.setWrapStyleWord(true);
 
-    // Scroll se o texto for muito grande
+    // Scroll para o texto
     JScrollPane scrollPane = new JScrollPane(caixaTexto);
-    add(scrollPane);
+    add(scrollPane, BorderLayout.CENTER);
 
+    // Painel para os checkboxes
+    JPanel painelOpcoes = new JPanel();
+    painelOpcoes.setLayout(new GridLayout(3, 3, 5, 5));
+
+    // Opções de configuração
     negrito = new JCheckBox("Negrito");
-    add(negrito);
-
-    italico = new JCheckBox("Italico");
-    add(italico);
-
-    aliEsquerda = new JCheckBox("Alinhar a esquerda");
-    add(aliEsquerda);
-
-    aliDireita = new JCheckBox("Alinhar a direita");
-    add(aliDireita);
-
-    aliCentro = new JCheckBox("Alinhar ao centro");
-    add(aliCentro);
-
+    italico = new JCheckBox("Itálico");
     sublinhado = new JCheckBox("Sublinhado");
-    add(sublinhado);
+    aliEsquerda = new JCheckBox("Alinhar à Esquerda");
+    aliDireita = new JCheckBox("Alinhar à Direita");
+    aliCentro = new JCheckBox("Alinhar ao Centro");
 
-    corTexto = new JCheckBox("Cor do texto");
-    add(corTexto);
+    painelOpcoes.add(negrito);
+    painelOpcoes.add(italico);
+    painelOpcoes.add(sublinhado);
+    painelOpcoes.add(aliEsquerda);
+    painelOpcoes.add(aliDireita);
+    painelOpcoes.add(aliCentro);
 
+    add(painelOpcoes, BorderLayout.NORTH);
+
+    // Painel para seleção de cor
+    JPanel painelCor = new JPanel();
+    painelCor.setLayout(new FlowLayout());
+
+    JLabel labelCor = new JLabel("Cor do Texto:");
+    corTexto = new JComboBox<>(new String[] { "Preto", "Vermelho", "Azul", "Verde" });
+    painelCor.add(labelCor);
+    painelCor.add(corTexto);
+
+    add(painelCor, BorderLayout.SOUTH);
+
+    // Adiciona os listeners
     CheckBoxHandler handler = new CheckBoxHandler();
     negrito.addItemListener(handler);
     italico.addItemListener(handler);
+    sublinhado.addItemListener(handler);
     aliEsquerda.addItemListener(handler);
     aliDireita.addItemListener(handler);
     aliCentro.addItemListener(handler);
-    sublinhado.addItemListener(handler);
-    corTexto.addItemListener(handler);
+    corTexto.addActionListener(handler);
   }
 
-  private class CheckBoxHandler implements ItemListener {
-
+  private class CheckBoxHandler implements ItemListener, ActionListener {
     public void itemStateChanged(ItemEvent event) {
+      // Configurações de estilo
+      int estilo = Font.PLAIN;
+      if (negrito.isSelected())
+        estilo += Font.BOLD;
+      if (italico.isSelected())
+        estilo += Font.ITALIC;
 
-      Map<TextAttribute, Object> attributes = new HashMap<>();
-      attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+      Font font = new Font("Calibri", estilo, 14);
 
-      Font font = null;
+      // Sublinhado
+      if (sublinhado.isSelected()) {
+        Map<TextAttribute, Object> attributes = new HashMap<>();
+        attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+        font = font.deriveFont(attributes);
+      }
 
-      // Determina a configuração do texto
-      if (negrito.isSelected() && italico.isSelected())
-        font = new Font("Calibri", Font.BOLD + Font.ITALIC, 14);
-
-      else if (negrito.isSelected())
-        font = new Font("Calibri", Font.BOLD, 14);
-
-      else if (italico.isSelected())
-        font = new Font("Calibri", Font.ITALIC, 14);
-
-      else if (aliEsquerda.isSelected())
-        caixaTexto.setAlignmentX(LEFT_ALIGNMENT);
-
-      else if (aliDireita.isSelected())
-        caixaTexto.setAlignmentX(RIGHT_ALIGNMENT);
-
-      else if (aliCentro.isSelected())
-        caixaTexto.setAlignmentX(CENTER_ALIGNMENT);
-
-      else if (sublinhado.isSelected())
-        font = new Font("Calibri", Font.PLAIN, 14).deriveFont(attributes);
-
-      else if (corTexto.isSelected())
-        caixaTexto.setForeground(java.awt.Color.RED);
-
-      else if (corTexto.isSelected())
-        caixaTexto.setForeground(java.awt.Color.RED);
-
-      else if (corTexto.isSelected())
-        caixaTexto.setForeground(java.awt.Color.RED);
-
-      else
-        font = new Font("Calibri", Font.PLAIN, 14);
-
+      // Aplica a fonte na caixa de texto
       caixaTexto.setFont(font);
+
+      // Alinhamento (esquerda, direita, centro)
+      if (aliEsquerda.isSelected()) {
+        caixaTexto.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+
+      } else if (aliDireita.isSelected()) {
+        caixaTexto.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+
+      } else if (aliCentro.isSelected()) {
+        System.out.println("Centralização não suportada.");
+      }
+    }
+
+    public void actionPerformed(ActionEvent event) {
+      // Configurações de cor
+      String cor = (String) corTexto.getSelectedItem();
+      switch (cor) {
+        case "Preto":
+          caixaTexto.setForeground(Color.BLACK);
+          break;
+        case "Vermelho":
+          caixaTexto.setForeground(Color.RED);
+          break;
+        case "Azul":
+          caixaTexto.setForeground(Color.BLUE);
+          break;
+        case "Verde":
+          caixaTexto.setForeground(Color.GREEN);
+          break;
+      }
     }
   }
 }
