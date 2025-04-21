@@ -2,6 +2,7 @@ package OrientaçãoAObjeto;
 
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,8 +21,10 @@ public class InterfaceUsuario extends JFrame {
 
         // Planos de assinatura
         PlanoNormal planoNormal = new PlanoNormal(29.90, "HD", "Smart TV, Celular, Computador", true);
+
         PlanoPremium planoPremium = new PlanoPremium(44.90, "Full HD", "Smart TV, Celular, Computador", false, true, 2,
                 true);
+
         PlanoVip planoVip = new PlanoVip(59.90, "4K Ultra HD", "Smart TV, Celular, Computador", false, true, true, true,
                 true);
 
@@ -35,6 +38,8 @@ public class InterfaceUsuario extends JFrame {
         painelPlanoNormal.add(new JLabel("Qualidade de Streaming: " + planoNormal.getQualidadeStreaming()));
         painelPlanoNormal.add(new JLabel("Aparelhos Compatíveis: " + planoNormal.getAparelhosCompatíveis()));
         painelPlanoNormal.add(new JLabel("Anúncios: " + (planoNormal.isAnuncios() ? "Sim" : "Não")));
+        JCheckBox checkboxPlanoNormal = new JCheckBox("Selecionar Plano Normal");
+        painelPlanoNormal.add(checkboxPlanoNormal);
 
         // Subpainel para o Plano Premium
         JPanel painelPlanoPremium = new JPanel();
@@ -51,6 +56,8 @@ public class InterfaceUsuario extends JFrame {
         painelPlanoPremium.add(new JLabel("Limite de Downloads: " + planoPremium.getLimiteDownloads()));
         painelPlanoPremium
                 .add(new JLabel("Suporte Prioritário: " + (planoPremium.getSuportePrioritario() ? "Sim" : "Não")));
+        JCheckBox checkboxPlanoPremium = new JCheckBox("Selecionar Plano Premium");
+        painelPlanoPremium.add(checkboxPlanoPremium);
 
         // Subpainel para o Plano VIP
         JPanel painelPlanoVip = new JPanel();
@@ -66,11 +73,40 @@ public class InterfaceUsuario extends JFrame {
         painelPlanoVip.add(new JLabel("Plano Família: " + (planoVip.getPlanoFamilia() ? "Sim" : "Não")));
         painelPlanoVip.add(new JLabel("Acesso Antecipado: " + (planoVip.getAcessoAnticipado() ? "Sim" : "Não")));
         painelPlanoVip.add(new JLabel("Áudio Espacial: " + (planoVip.getAudioEspacial() ? "Sim" : "Não")));
+        JCheckBox checkboxPlanoVip = new JCheckBox("Selecionar Plano VIP");
+        painelPlanoVip.add(checkboxPlanoVip);
 
+        // Adiciona os subpainéis ao painel principal
         painelPrincipal.add(painelPlanoNormal);
         painelPrincipal.add(painelPlanoPremium);
         painelPrincipal.add(painelPlanoVip);
 
+        // Adiciona o painel principal à janela
         add(painelPrincipal);
+
+        // Exemplo de como capturar a seleção dos checkboxes
+        checkboxPlanoNormal.addActionListener(e -> {
+            if (checkboxPlanoNormal.isSelected()) {
+                System.out.println("Plano Normal selecionado!");
+            } else {
+                System.out.println("Plano Normal desmarcado!");
+            }
+        });
+
+        checkboxPlanoPremium.addActionListener(e -> {
+            if (checkboxPlanoPremium.isSelected()) {
+                System.out.println("Plano Premium selecionado!");
+            } else {
+                System.out.println("Plano Premium desmarcado!");
+            }
+        });
+
+        checkboxPlanoVip.addActionListener(e -> {
+            if (checkboxPlanoVip.isSelected()) {
+                System.out.println("Plano VIP selecionado!");
+            } else {
+                System.out.println("Plano VIP desmarcado!");
+            }
+        });
     }
 }
