@@ -7,7 +7,7 @@ public class ConfigTextoTeste {
 
     ConfigTexto tela = new ConfigTexto();
     tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    tela.setSize(400, 500); // configura o tamanho do fram
+    tela.setSize(400, 500);
     tela.setVisible(true);
 
   }

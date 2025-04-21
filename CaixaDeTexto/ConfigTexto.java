@@ -8,6 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
 import javax.swing.JScrollPane;
+import java.awt.font.TextAttribute;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ConfigTexto extends JFrame {
   private JTextArea caixaTexto; // Substituímos JTextField por JTextArea
@@ -24,7 +27,7 @@ public class ConfigTexto extends JFrame {
     setLayout(new FlowLayout());
 
     caixaTexto = new JTextArea("Escolha a configuração do seu texto", 5, 20); // 5 linha e 20 colunas
-    caixaTexto.setFont(new Font("Serif", Font.PLAIN, 14));
+    caixaTexto.setFont(new Font("Calibri", Font.PLAIN, 14));
     caixaTexto.setLineWrap(true); // Quebra de linha automática
     caixaTexto.setWrapStyleWord(true);
 
@@ -56,36 +59,57 @@ public class ConfigTexto extends JFrame {
     CheckBoxHandler handler = new CheckBoxHandler();
     negrito.addItemListener(handler);
     italico.addItemListener(handler);
+    aliEsquerda.addItemListener(handler);
+    aliDireita.addItemListener(handler);
+    aliCentro.addItemListener(handler);
+    sublinhado.addItemListener(handler);
+    corTexto.addItemListener(handler);
   }
 
   private class CheckBoxHandler implements ItemListener {
 
-    // Responde aos eventos de caixa de seleção
     public void itemStateChanged(ItemEvent event) {
+
+      Map<TextAttribute, Object> attributes = new HashMap<>();
+      attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
 
       Font font = null;
 
-      // Determina que CheckBoxes estão marcadas e cria Font
+      // Determina a configuração do texto
       if (negrito.isSelected() && italico.isSelected())
-        font = new Font("Serif", Font.BOLD + Font.ITALIC, 14);
+        font = new Font("Calibri", Font.BOLD + Font.ITALIC, 14);
 
       else if (negrito.isSelected())
-        font = new Font("Serif", Font.BOLD, 14);
+        font = new Font("Calibri", Font.BOLD, 14);
 
       else if (italico.isSelected())
-        font = new Font("Serif", Font.ITALIC, 14);
+        font = new Font("Calibri", Font.ITALIC, 14);
+
+      else if (aliEsquerda.isSelected())
+        caixaTexto.setAlignmentX(LEFT_ALIGNMENT);
+
+      else if (aliDireita.isSelected())
+        caixaTexto.setAlignmentX(RIGHT_ALIGNMENT);
+
+      else if (aliCentro.isSelected())
+        caixaTexto.setAlignmentX(CENTER_ALIGNMENT);
+
+      else if (sublinhado.isSelected())
+        font = new Font("Calibri", Font.PLAIN, 14).deriveFont(attributes);
+
+      else if (corTexto.isSelected())
+        caixaTexto.setForeground(java.awt.Color.RED);
+
+      else if (corTexto.isSelected())
+        caixaTexto.setForeground(java.awt.Color.RED);
+
+      else if (corTexto.isSelected())
+        caixaTexto.setForeground(java.awt.Color.RED);
 
       else
-        font = new Font("Serif", Font.PLAIN, 14);
+        font = new Font("Calibri", Font.PLAIN, 14);
 
-      caixaTexto.setFont(font); // Configura a fonte do JTextArea
+      caixaTexto.setFont(font);
     }
-  }
-
-  public static void main(String[] args) {
-    ConfigTexto frame = new ConfigTexto();
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setSize(500, 300);
-    frame.setVisible(true);
   }
 }
