@@ -2,18 +2,19 @@ package OrientaçãoAObjeto;
 
 public class PlanoPremium extends PlanoNormal {
 
-  private boolean acessoConteudoExclusivo = true;
-  private int limiteDownloads = 2;
-  private boolean suportePrioritario = true;
+  protected boolean acessoConteudoExclusivo;
+  protected int limiteDownloads;
+  protected boolean suportePrioritario;
 
   // Construtor
   public PlanoPremium(double Mensalidade, String QualidadeStreaming, String AparelhosCompatíveis, boolean anuncios,
       boolean acessoConteudoExclusivo, int limiteDownloads, boolean suportePrioritario) {
 
     super(Mensalidade, QualidadeStreaming, AparelhosCompatíveis, anuncios);
-    this.limiteDownloads = limiteDownloads;
-    this.acessoConteudoExclusivo = acessoConteudoExclusivo;
-    this.suportePrioritario = suportePrioritario;
+
+    this.limiteDownloads = 2;
+    this.acessoConteudoExclusivo = true;
+    this.suportePrioritario = true;
     this.setMensalidade(44.90);
     this.setAnuncios(false);
   }
@@ -27,7 +28,7 @@ public class PlanoPremium extends PlanoNormal {
     return acessoConteudoExclusivo;
   }
 
-  public void setAcessoConteudoExclusivo(boolean acessoConteudoExclusivo) {
+  public void setacessoConteudoExclusivo(boolean acessoConteudoExclusivo) {
     this.acessoConteudoExclusivo = acessoConteudoExclusivo;
   }
 

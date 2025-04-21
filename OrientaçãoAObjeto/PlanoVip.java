@@ -1,24 +1,21 @@
 package OrientaçãoAObjeto;
 
-class PlanoVip extends PlanoNormal {
-  private boolean acessoEventosVip = true;
-  private boolean planoFamilia = true;
-  private boolean acessoAnticipado = true;
-  private boolean AudioEspacial = true;
+class PlanoVip extends PlanoPremium {
 
-  public PlanoVip(boolean acessoEventosVip, boolean planoFamilia, boolean acessoAnticipado, boolean AudioEspacial,
-      double Mensalidade,
-      String QualidadeStreaming, String AparelhosCompatíveis, boolean anuncios) {
+  private boolean acessoEventosVip;
+  private boolean planoFamilia;
+  private boolean acessoAnticipado;
+  private boolean AudioEspacial;
 
-    super(Mensalidade, QualidadeStreaming, AparelhosCompatíveis, anuncios);
+  public PlanoVip(double mensalidade, String qualidadeStreaming, String aparelhosCompatíveis, boolean anuncios,
+      boolean acessoEventosVip, boolean planoFamilia, boolean acessoAnticipado, boolean audioEspacial) {
+
+    super(mensalidade, qualidadeStreaming, aparelhosCompatíveis, anuncios, true, 10, true);
+
     this.acessoEventosVip = acessoEventosVip;
     this.planoFamilia = planoFamilia;
     this.acessoAnticipado = acessoAnticipado;
-    this.AudioEspacial = AudioEspacial;
-    this.setMensalidade(59.90);
-    this.setQualidade("Excepcional, 4K (Ultra HD) + HDR");
-    this.setAnuncios(false);
-
+    this.AudioEspacial = audioEspacial;
   }
 
   public PlanoVip() {

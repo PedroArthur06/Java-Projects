@@ -3,18 +3,18 @@ package OrientaçãoAObjeto;
 public class PlanoNormal {
 
   // Atributos
-  private double Mensalidade = 20.90;
-  private String QualidadeStreaming = "Boa, 1080p (Full HD)";
-  private String AparelhosCompatíveis = "TV, computador, celular, tablet";
-  private boolean anuncios = true;
+  private double Mensalidade;
+  private String QualidadeStreaming;
+  private String AparelhosCompatíveis;
+  private boolean anuncios;
 
   // Construtor
   public PlanoNormal(double Mensalidade, String QualidadeStreaming, String AparelhosCompatíveis, boolean anuncios) {
 
-    this.Mensalidade = Mensalidade;
-    this.QualidadeStreaming = QualidadeStreaming;
-    this.AparelhosCompatíveis = AparelhosCompatíveis;
-    this.anuncios = anuncios;
+    this.Mensalidade = 20.90;
+    this.QualidadeStreaming = "Boa, 1080p (Full HD)";
+    this.AparelhosCompatíveis = "TV, computador, celular, tablet";
+    this.anuncios = true;
   }
 
   // Construtor vazio
@@ -30,11 +30,11 @@ public class PlanoNormal {
     this.Mensalidade = Mensalidade;
   }
 
-  public String getQualidadeString() {
+  public String getQualidadeStreaming() {
     return QualidadeStreaming;
   }
 
-  public void setQualidade(String QualidadeStreaming) {
+  public void setQualidadeStreaming(String QualidadeStreaming) {
     this.QualidadeStreaming = QualidadeStreaming;
   }
 
