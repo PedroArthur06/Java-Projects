@@ -17,11 +17,9 @@ public class PlanoNormal {
     this.anuncios = true;
   }
 
-  // Construtor vazio
   public PlanoNormal() {
   }
 
-  // Getters e Setters
   public double getMensalidade() {
     return Mensalidade;
   }

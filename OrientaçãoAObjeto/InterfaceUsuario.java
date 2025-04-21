@@ -1,61 +1,72 @@
 package OrientaçãoAObjeto;
 
-import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import javax.swing.JFrame;
-import javax.swing.JTextField;
-
-import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class InterfaceUsuario extends JFrame {
 
-    private JTextField textField; // exibe o texto na alteração de fonte
-    private JCheckBox boldJCheckBox; // para selecionar/remover estilo n
-    private JCheckBox italicJCheckBox; // para selecionar/remover itálico
-
-    // construtor CheckBoxFrame adiciona JCheckBoxes ao JFrame
     public InterfaceUsuario() {
-
-        super("Planos");
-        setLayout(new FlowLayout()); // configura o layout de frame
-
-        boldJCheckBox = new JCheckBox("Bold"); // cria caixa de seleção p
-        italicJCheckBox = new JCheckBox("Italic"); // cria italic
-        add(boldJCheckBox); // adiciona caixa de seleção de estilo negrit
-        add(italicJCheckBox); // adiciona caixa de seleção de itā
+        // Configurações da janela
+        super("Planos de assinatura");
+        setLayout(new GridLayout(1, 1)); // Configura o layout da janela
     }
 
-    // método para mostrar o as características do plano
     public void showPlanos() {
+        // Painel principal para organizar os planos lado a lado
+        JPanel painelPrincipal = new JPanel();
+        painelPrincipal.setLayout(new GridLayout(1, 3)); // 1 linha, 3 colunas (um para cada plano)
 
-        // Cria os planos
+        // Planos de assinatura
         PlanoNormal planoNormal = new PlanoNormal(29.90, "HD", "Smart TV, Celular, Computador", true);
-
         PlanoPremium planoPremium = new PlanoPremium(44.90, "Full HD", "Smart TV, Celular, Computador", false, true, 2,
                 true);
+        PlanoVip planoVip = new PlanoVip(59.90, "4K Ultra HD", "Smart TV, Celular, Computador", false, true, true, true,
+                true);
 
-        // Exibe as características dos planos
-        System.out.println("Plano Normal:");
-        System.out.println("Mensalidade: " + planoNormal.getMensalidade());
-        System.out.println("Qualidade de Streaming: " + planoNormal.getQualidadeStreaming());
-        System.out.println("Aparelhos Compatíveis: " + planoNormal.getAparelhosCompatíveis());
-        System.out.println("Anúncios: " + planoNormal.isAnuncios());
+        // Subpainel para o Plano Normal
+        JPanel painelPlanoNormal = new JPanel();
+        painelPlanoNormal.setLayout(new GridLayout(0, 1)); // Layout vertical
+        painelPlanoNormal.add(new JLabel("Plano Normal:"));
+        painelPlanoNormal.add(new JLabel("Mensalidade: R$ " + planoNormal.getMensalidade()));
+        painelPlanoNormal.add(new JLabel("Qualidade de Streaming: " + planoNormal.getQualidadeStreaming()));
+        painelPlanoNormal.add(new JLabel("Aparelhos Compatíveis: " + planoNormal.getAparelhosCompatíveis()));
+        painelPlanoNormal.add(new JLabel("Anúncios: " + (planoNormal.isAnuncios() ? "Sim" : "Não")));
 
-        System.out.println("\nPlano Premium:");
-        System.out.println("Mensalidade: " + planoPremium.getMensalidade());
-        System.out.println("Qualidade de Streaming: " + planoPremium.getQualidadeStreaming());
-        System.out.println("Aparelhos Compatíveis: " + planoPremium.getAparelhosCompatíveis());
-        System.out.println("Anúncios: " + planoPremium.isAnuncios());
-        System.out.println("Acesso a Conteúdo Exclusivo: " + planoPremium.getAcessoConteudoExclusivo());
-        System.out.println("Limite de Downloads: " + planoPremium.getLimiteDownloads());
-        System.out.println("Suporte Prioritário: " + planoPremium.getSuportePrioritario());
-        System.out.println("\nPlano VIP:");
+        // Subpainel para o Plano Premium
+        JPanel painelPlanoPremium = new JPanel();
+        painelPlanoPremium.setLayout(new GridLayout(0, 1)); // Layout vertical
+        painelPlanoPremium.add(new JLabel("Plano Premium:"));
+        painelPlanoPremium.add(new JLabel("Mensalidade: R$ " + planoPremium.getMensalidade()));
+        painelPlanoPremium.add(new JLabel("Qualidade de Streaming: " + planoPremium.getQualidadeStreaming()));
+        painelPlanoPremium.add(new JLabel("Aparelhos Compatíveis: " + planoPremium.getAparelhosCompatíveis()));
+        painelPlanoPremium.add(new JLabel("Anúncios: " + (planoPremium.isAnuncios() ? "Sim" : "Não")));
+        painelPlanoPremium.add(new JLabel(
+                "Acesso a Conteúdo Exclusivo: " + (planoPremium.getAcessoConteudoExclusivo() ? "Sim" : "Não")));
+        painelPlanoPremium.add(new JLabel("Limite de Downloads: " + planoPremium.getLimiteDownloads()));
+        painelPlanoPremium
+                .add(new JLabel("Suporte Prioritário: " + (planoPremium.getSuportePrioritario() ? "Sim" : "Não")));
 
-        PlanoVip planoVip = new PlanoVip(59.90, "Excepcional, 4K (Ultra HD) + HDR", "Smart TV, Celular, Computador",
-                false, true, true, true, true);
-        System.out.println("Mensalidade: " + planoVip.getMensalidade());
-        System.out.println("Qualidade de Streaming: " + planoVip.getQualidadeStreaming());
-        System.out.println("Aparelhos Compatíveis: " + planoVip.getAparelhosCompatíveis());
+        // Subpainel para o Plano VIP
+        JPanel painelPlanoVip = new JPanel();
+        painelPlanoVip.setLayout(new GridLayout(0, 1)); // Layout vertical
+        painelPlanoVip.add(new JLabel("Plano VIP:"));
+        painelPlanoVip.add(new JLabel("Mensalidade: R$ " + planoVip.getMensalidade()));
+        painelPlanoVip.add(new JLabel("Qualidade de Streaming: " + planoVip.getQualidadeStreaming()));
+        painelPlanoVip.add(new JLabel("Aparelhos Compatíveis: " + planoVip.getAparelhosCompatíveis()));
+        painelPlanoVip.add(new JLabel("Anúncios: " + (planoVip.isAnuncios() ? "Sim" : "Não")));
+        painelPlanoVip.add(new JLabel("Acesso a Eventos VIP: " + (planoVip.getAcessoEventosVip() ? "Sim" : "Não")));
+        painelPlanoVip.add(new JLabel("Plano Família: " + (planoVip.getPlanoFamilia() ? "Sim" : "Não")));
+        painelPlanoVip.add(new JLabel("Acesso Antecipado: " + (planoVip.getAcessoAnticipado() ? "Sim" : "Não")));
+        painelPlanoVip.add(new JLabel("Áudio Espacial: " + (planoVip.getAudioEspacial() ? "Sim" : "Não")));
 
+        // Adiciona os subpainéis ao painel principal
+        painelPrincipal.add(painelPlanoNormal);
+        painelPrincipal.add(painelPlanoPremium);
+        painelPrincipal.add(painelPlanoVip);
+
+        // Adiciona o painel principal à janela
+        add(painelPrincipal);
     }
-
 }
