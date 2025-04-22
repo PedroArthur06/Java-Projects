@@ -1,4 +1,4 @@
-package OrientaçãoAObjeto;
+package OrientaçãoAObjeto.src;
 
 class PlanoVip extends PlanoPremium {
 

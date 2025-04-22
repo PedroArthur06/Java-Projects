@@ -1,4 +1,4 @@
-package OrientaçãoAObjeto;
+package OrientaçãoAObjeto.src;
 
 import javax.swing.JFrame;
 

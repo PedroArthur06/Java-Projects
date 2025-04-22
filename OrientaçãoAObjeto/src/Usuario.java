@@ -1,4 +1,4 @@
-package OrientaçãoAObjeto;
+package OrientaçãoAObjeto.src;
 
 public class Usuario {
   private String nome;
