@@ -19,6 +19,7 @@ public class CheckBoxFrame extends JFrame {
         super("JCheckBox Test");
         setLayout(new FlowLayout()); // configura o layout de frame
 
+
         // configura JTextField e sua fonte
         textField = new JTextField("Watch the font style change", 20);
         textField.setFont(new Font("Serif", Font.PLAIN, 14));
