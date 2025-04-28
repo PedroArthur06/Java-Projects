@@ -9,43 +9,49 @@ import javax.swing.ButtonGroup;
 
 public class RadioButtonFrame extends JFrame {
 
-  private JTextField textField; // utilizado par
-  private Font plainFont; // fonte para texto si
-  private Font boldFont; // fonte para texto em
-  private Font italicFont; // fonte para texto e
-  private Font boldItalicFont; // fonte para tex
-  private JRadioButton plainJRadioButton; // sel
-  private JRadioButton boldJRadioButton; // sele
-  private JRadioButton italicJRadioButton; // se
-  private JRadioButton boldItalicJRadioButton;
-  private ButtonGroup radioGroup; // buttongroup
+  private JTextField textField; // campo de texto para exibir a fonte
+  private Font plainFont; // fonte para texto em estilo simples
+  private Font boldFont; // fonte para texto em negrito
+  private Font italicFont; // fonte para texto em italico
+  private Font boldItalicFont; // fonte para texto em negrito e italico
+  private JRadioButton plainJRadioButton; // seleciona o estilo simples
+  private JRadioButton boldJRadioButton; // seleciona o estilo negrito
+  private JRadioButton italicJRadioButton; // seleciona o estilo italico
+  private JRadioButton boldItalicJRadioButton; // seleciona o estilo negrito e italico
+  private ButtonGroup radioGroup; // grupo de botões de opção
 
   public RadioButtonFrame() {
     super("RadioButton Test");
     setLayout(new FlowLayout()); // configura o layout de frame
-    textField = new JTextField("Watch the font style change", 25);
+    textField = new JTextField("Watch the font style change", 25); // cria campo de texto
     add(textField); // adiciona textField ao JFrame
-    // cria botÃµes de opÃ§Ã£o
+
+    // cria botões de opção
     plainJRadioButton = new JRadioButton("Plain", true);
     boldJRadioButton = new JRadioButton("Bold", false);
     italicJRadioButton = new JRadioButton("Italic", false);
     boldItalicJRadioButton = new JRadioButton("Bold/Italic", false);
-    add(plainJRadioButton); // adiciona botÃ£o no estilo simples ao JF
-    add(boldJRadioButton); // adiciona botÃ£o de negrito ao JFrame
-    add(italicJRadioButton); // adiciona botÃ£o de itÃ¡lico ao JFrame
-    add(boldItalicJRadioButton); // adiciona botÃ£o de negrito e itÃ¡li
-    // cria relacionamento lÃ³gico entre JRadioButtons
-    radioGroup = new ButtonGroup(); // cria ButtonGroup
-    radioGroup.add(plainJRadioButton); // adiciona simples ao grupo radioGroup.add(boldJRadioButton); /
 
-    radioGroup.add(italicJRadioButton); // adiciona itÃ¡lico ao grupo
-    radioGroup.add(boldItalicJRadioButton); // adiciona negrito e itÃ¡
+    // Adiciona os botões de opção ao JFrame
+    add(plainJRadioButton);
+    add(boldJRadioButton);
+    add(italicJRadioButton);
+    add(boldItalicJRadioButton);
+
+    // cria relacionamento lógico entre JRadioButtons
+    radioGroup = new ButtonGroup(); // cria ButtonGroup
+    radioGroup.add(plainJRadioButton); // adiciona simples ao grupo
+    radioGroup.add(boldJRadioButton); // adiciona negrito ao grupo
+    radioGroup.add(italicJRadioButton); // adiciona italico ao grupo
+    radioGroup.add(boldItalicJRadioButton); // adiciona negrito e italico ao grupo
+
     // cria fonte objetos
-    plainFont = new Font("Serif", Font.PLAIN, 14);
-    boldFont = new Font("Serif", Font.BOLD, 14);
-    italicFont = new Font("Serif", Font.ITALIC, 14);
-    boldItalicFont = new Font("Serif", Font.BOLD + Font.ITALIC, 14);
-    textField.setFont(plainFont); // configura a fonte inicial como si
+    plainFont = new Font("Calibri", Font.PLAIN, 14);
+    boldFont = new Font("Calibri", Font.BOLD, 14);
+    italicFont = new Font("Calibri", Font.ITALIC, 14);
+    boldItalicFont = new Font("Calibri", Font.BOLD + Font.ITALIC, 14);
+    textField.setFont(plainFont); // configura a fonte inicial como simples
+
     // registra eventos para JRadioButtons
     plainJRadioButton.addItemListener(new RadioButtonHandler(plainFont));
     boldJRadioButton.addItemListener(new RadioButtonHandler(boldFont));
@@ -54,16 +60,14 @@ public class RadioButtonFrame extends JFrame {
   }
 
   private class RadioButtonHandler implements ItemListener {
-    private Font font; // fonte associada com esse listen
+    private Font font; // fonte associada com esse listener
 
     public RadioButtonHandler(Font f) {
       font = f; // configura a fonte desse listener
-    } // fim do construtor RadioButtonHandler
-    // trata eventos de botÃ£o de opÃ§Ã£o
+    }
 
     public void itemStateChanged(ItemEvent event) {
-      textField.setFont(font); // configura fonte de te
-    } // fim do mÃ©todo itemStateChanged
+      textField.setFont(font); // configura fonte de textField
+    }
   }
-  // fim da classe RadioButtonHandler interna private
-}// fim da classe RadioButton
+}
